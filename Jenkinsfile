@@ -12,7 +12,7 @@ pipeline {
         TF_IN_AUTOMATION = "true"
         PATH = "$TF_HOME:$PATH"
         ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
-        SECRET_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        SECRET_KEY = "AWS_SECRET_ACCESS_KEY"
     }
     stages {
             stage('TerraformInit'){
