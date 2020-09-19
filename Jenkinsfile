@@ -57,7 +57,7 @@ pipeline {
                         -out terraform.tfplan;echo \$? > status"
                         stash name: "terraform-plan", includes: "terraform.tfplan"
                         */
-                   }
+                   //}
                 }
             }
         }
