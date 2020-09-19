@@ -45,8 +45,8 @@ pipeline {
         stage('TerraformPlan'){
             steps {
                 dir('./'){
-                   /* script {
-                        try {
+                   script {
+                        /*try {
                             sh "terraform workspace new ${params.WORKSPACE}"
                         } catch (err) {
                             sh "terraform workspace select ${params.WORKSPACE}"
