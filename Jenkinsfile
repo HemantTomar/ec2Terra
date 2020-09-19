@@ -17,7 +17,7 @@ pipeline {
     stages {
             stage('TerraformInit'){
             steps {
-                dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                dir('./'){
                     sh "terraform init -input=false"
                     sh "echo \$PWD"
                     sh "whoami"
@@ -27,7 +27,7 @@ pipeline {
 
         stage('TerraformFormat'){
             steps {
-                dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                dir('./'){
                     sh "terraform fmt -list=true -write=false -diff=true -check=true"
                 }
             }
