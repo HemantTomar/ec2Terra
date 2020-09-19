@@ -45,7 +45,7 @@ pipeline {
         stage('TerraformPlan'){
             steps {
                 dir('./'){
-                   script {
+                   //script {
                         /*try {
                             sh "terraform workspace new ${params.WORKSPACE}"
                         } catch (err) {
@@ -58,7 +58,7 @@ pipeline {
                         -out terraform.tfplan;echo \$? > status"
                         stash name: "terraform-plan", includes: "terraform.tfplan"
                         */
-                    }
+                   // }
                 }
             }
         }
