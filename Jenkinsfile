@@ -35,7 +35,7 @@ pipeline {
 
         stage('TerraformValidate'){
             steps {
-                dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                dir('./'){
                     sh "terraform validate"
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
 
         stage('TerraformPlan'){
             steps {
-                dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                dir('./'){
                     script {
                         try {
                             sh "terraform workspace new ${params.WORKSPACE}"
@@ -69,7 +69,7 @@ pipeline {
                          currentBuild.result = 'UNSTABLE'
                     }
                     if(apply){
-                        dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                        dir('./'){
                             unstash "terraform-plan"
                             sh 'terraform apply terraform.tfplan'
                         }
