@@ -25,14 +25,14 @@ pipeline {
             }
         }
 
-        stage('TerraformFormat'){
-            steps {
-                dir('./'){
-                    sh "terraform fmt"
+      //  stage('TerraformFormat'){
+            //steps {
+            //    dir('./'){
+                 //   sh "terraform fmt"
                     //-list=true -write=false -diff=true -check=true"
-                }
-            }
-        }
+               // }
+          //  }
+       // }
 
         stage('TerraformValidate'){
             steps {
