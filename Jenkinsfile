@@ -81,7 +81,7 @@ pipeline {
             steps {
                 dir('./'){
                 
-                        sh "terraform destroy" 
+                        sh "terraform destroy --auto-approve" 
                 }
             }
         }
