@@ -65,7 +65,7 @@ pipeline {
                
                  dir('./'){
                 
-                        sh "terraform apply" 
+                        sh "terraform apply --auto-approve" 
                 }
             }
         }
