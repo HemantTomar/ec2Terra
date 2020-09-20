@@ -27,14 +27,14 @@ pipeline {
             }
         }
 
-      //  stage('TerraformFormat'){
-            //steps {
-            //    dir('./'){
-                 //   sh "terraform fmt"
+       stage('TerraformFormat'){
+            steps {
+                dir('./'){
+                   sh "terraform fmt"
                     //-list=true -write=false -diff=true -check=true"
-               // }
-          //  }
-       // }
+               }
+           }
+        }
 
         stage('TerraformValidate'){
             steps {
@@ -63,6 +63,14 @@ pipeline {
                 }
             }
         }
+      stage('Terraform Apply Approval') {
+      options {
+        timeout(time: 1, unit: 'HOURS') 
+      }
+      steps {
+        input 'approve the plan to proceed and apply'
+      }
+    }
         stage('TerraformApply'){
             steps {
                 script{
@@ -80,6 +88,33 @@ pipeline {
                             sh 'terraform apply terraform.tfplan'
                         }
                     }
+                }
+            }
+        }
+         stage('Terraform Destroy Approval') {
+      options {
+        timeout(time: 1, unit: 'HOURS') 
+      }
+      steps {
+        input 'approve the plan to proceed and destroy'
+      }
+    }
+        stage('TerraformDestroy'){
+            steps {
+                dir('./'){
+                   /*script {
+                        try {
+                            sh "terraform workspace new ${params.WORKSPACE}"
+                        } catch (err) {
+                            sh "terraform workspace select ${params.WORKSPACE}"
+                        }
+                     */  
+                        sh "terraform destroy" //-var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY'"
+                    /*\
+                        -out terraform.tfplan;echo \$? > status"
+                        stash name: "terraform-plan", includes: "terraform.tfplan"
+                        */
+                   //}
                 }
             }
         }
